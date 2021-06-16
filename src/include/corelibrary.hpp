@@ -1,5 +1,14 @@
+#include <memory>
+
 int add(int a, int b);
 void output();
+
+class Reference
+{
+    public:
+        int id;
+        Reference(int _id);
+};
 
 class CoreClass
 {
@@ -10,5 +19,6 @@ class CoreClass
         int add(int other);
         void output();
         void unused();
+        std::shared_ptr<Reference> get_reference(int id);
 };
 

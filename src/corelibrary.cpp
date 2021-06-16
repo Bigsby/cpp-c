@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include <iostream>
+#include <memory>
 #include <corelibrary.hpp>
 
 int add(int a, int b)
@@ -8,8 +9,10 @@ int add(int a, int b)
 
 void output()
 {
-    printf("in core\n");
+    std::cout << "message from core" << std::endl;
 }
+
+Reference::Reference(int _id) : id(_id) {}
 
 CoreClass::CoreClass(int value) : m_value(value) {}
 
@@ -21,11 +24,15 @@ int CoreClass::add(int other)
 
 void CoreClass::output()
 {
-    printf("CoreClass %d\n", m_value);
+    std::cout << "CoreClass " << m_value << std::endl;
 }
 
 void CoreClass::unused()
 {
-    printf("This is unused\n");
+    std::cout << "This is unused" << std::endl;
 }
 
+std::shared_ptr<Reference> CoreClass::get_reference(int id)
+{
+    return std::shared_ptr<Reference>(new Reference(id));
+}
